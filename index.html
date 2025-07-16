@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Konversi Mata Uang</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Konversi Mata Uang</h1>
+    <form method="POST">
+      <label>Mode:</label>
+      <select name="mode">
+        <option value="1">Dari Mata Uang ke IDR</option>
+        <option value="2">Dari IDR ke Mata Uang</option>
+      </select>
+      <br><br>
+
+      <label>Pilih Mata Uang:</label>
+      <select name="currency">
+        {% for i, mata in mata_uang %}
+          <option value="{{ i }}">{{ mata }}</option>
+        {% endfor %}
+      </select>
+      <br><br>
+
+      <label>Jumlah:</label>
+      <input type="number" name="amount" required>
+      <br><br>
+
+      <button type="submit">Konversi</button>
+    </form>
+
+    {% if result %}
+      <h2>Hasil: {{ result }}</h2>
+    {% endif %}
+  </div>
+</body>
+</html>
